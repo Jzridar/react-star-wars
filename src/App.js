@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+
 import './App.css';
+import StarShipCard from './components/StarShipCard';
+import getAllStarships from './services/sw-api';
+import React, { useState, useEffect } from 'react'
 
 function App() {
+
+  const [starShips, setStarShips] = useState([])
+
+  //This will run on the first render but not on subsquent renders
+  useEffect(() => {
+    getAllStarships()
+      .then(ships => {
+        console.log(ships)
+        setStarShips(ships);
+        });
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <StarShipCard data={starShips}/>
     </div>
   );
 }
