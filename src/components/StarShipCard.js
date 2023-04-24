@@ -1,16 +1,14 @@
-
+import StarShip from './Starship';
 
  function StarShipCard(props) {
-  let starShips = props.data
-  console.log(`starShips.count ${starShips.count}`)
+  let starShip = props.data
+  console.log(`starShip ${starShip}`)
 
   return (
-    <div className='StarShipCard'>
-    { starShips.results &&
-      starShips.results.map((starship) => (
-        <div>{starship.name}</div>
-    ))}
-     </div>
+    <div className='column'>
+      <StarShip data={starShip}/>
+    </div>
+     
   )
 }
 

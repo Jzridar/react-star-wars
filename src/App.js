@@ -1,6 +1,7 @@
 
 import './App.css';
 import StarShipCard from './components/StarShipCard';
+import Header from './components/Header';
 import getAllStarships from './services/sw-api';
 import React, { useState, useEffect } from 'react'
 
@@ -14,14 +15,20 @@ function App() {
       .then(ships => {
         console.log(ships)
         setStarShips(ships);
-        });
+      });
   }, [])
 
 
   return (
-    <div className="App">
-     <StarShipCard data={starShips}/>
+    <>
+    <Header />
+    <div className='row'>
+      {starShips.results &&
+        starShips.results.map((starship) => (
+          <StarShipCard data={starship} />
+        ))}
     </div>
+    </>
   );
 }
 
